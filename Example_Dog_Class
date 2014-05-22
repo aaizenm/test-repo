@@ -41,3 +41,22 @@
 # snookums$swatWithNewspaper()
 #Grr!
 # snookums$bark()
+## Adding a new similar example
+Dog <- setClass(
+  Class = "Dog",
+  prototype = list(
+    bark = function() {
+      cat(paste(rep("Woof!", barks), collapse = " "))
+    },
+    swatWithNewspaper = function() {
+      cat("Yelp!")
+      barks <<- sample(3:10, 1)
+    },
+    getBarks = function() barks
+  )
+)
+
+#fido <- new("Dog")
+# fido@bark()
+#Woof! Woof! Woof! Woof!
+# fido@swatWithNewspaper()
