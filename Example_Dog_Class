@@ -1,0 +1,43 @@
+  # The elements in the list can be seen as class methods.
+  # Let's create a very simple "class" to represent a dog.
+  # A dog won't do much: bark when we tell it to, and 
+  # we can train it to bark a different number of times
+  # by swatting it with a newspaper...
+ 
+  Dog <- function(name = "Fido", barkType = "Woof!") {
+   # Let's set up a "property" that contains a random number of 
+   # times the dog will bark when asked to...
+   noOfBarks <- numeric(1)
+   updateBarkNumber <- function() noOfBarks <<- sample(1:10, 1)
+   updateBarkNumber()
+   
+   # Let's create a "method" that may change the property noOfBarks...
+   f <- function() {
+     cat(c("YIP!\n", "Grr!\n", "YELP!\n", "Ouch!")[sample(1:4, 1)])
+     updateBarkNumber()
+   }
+   
+   # And a "method" to get the dog to bark...
+   g <- function() for (i in 1:noOfBarks) cat(sprintf("%s ", barkType))
+   
+   # The "properties" and "methods" that we'd like to be "public"
+   # are simply elements of a list that the function Dog returns; let's
+   # create the list and give the elements appropriate names...
+   list(name = name, swatWithNewspaper = f, bark = g)
+ }
+
+#fido <- Dog() 
+# snookums <- Dog(name = "Snookums", barkType = "Yap!")
+# fido$name
+#[1] "Fido"
+# fido$bark()
+#Woof! Woof! Woof! Woof! Woof! Woof! Woof! Woof! Woof! 
+# snookums$name
+#[1] "Snookums"
+# snookums$bark()
+#Yap! Yap! Yap! Yap! Yap! Yap! 
+# snookums$bark()
+#Yap! Yap! Yap! Yap! Yap! Yap! 
+# snookums$swatWithNewspaper()
+#Grr!
+# snookums$bark()
